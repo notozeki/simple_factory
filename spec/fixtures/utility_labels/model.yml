@@ -1,0 +1,9 @@
+name:
+  _sample:
+    - John Lennon
+    - Paul McCartney
+    - George Harrison
+    - Ringo Starr
+age:
+  _sequence: '%{i}歳'
+job: Musician

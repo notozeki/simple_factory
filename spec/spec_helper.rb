@@ -3,3 +3,6 @@ require 'simple_factory'
 
 # Requires support files.
 Dir[File.join(File.dirname(__FILE__), 'support', '**', '*.rb')].each { |f| require f }
+
+# Requires fixtures.
+Dir[File.join(File.dirname(__FILE__), 'fixtures', '**', '*.rb')].each { |f| require f }
