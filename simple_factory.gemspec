@@ -21,4 +21,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'sqlite3', '~> 1.3.10'
+  spec.add_development_dependency 'activerecord', '~> 5.0.0'
+  spec.add_development_dependency 'trailblazer', '~> 1.1.1'
+  spec.add_development_dependency 'reform', '~> 2.2.1'
+  spec.add_development_dependency 'dry-validation', '~> 0.8.0'
 end
