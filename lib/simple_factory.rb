@@ -5,4 +5,7 @@ require 'simple_factory/hash_definitions'
 require 'simple_factory/version'
 
 module SimpleFactory
+  class << self
+    attr_accessor :definitions_dir
+  end
 end

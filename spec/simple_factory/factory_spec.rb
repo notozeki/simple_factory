@@ -85,7 +85,7 @@ describe SimpleFactory::Factory do
       subject { SimpleYamlFactory }
 
       let(:source) do
-        YAML.load_file(File.join(File.dirname(__FILE__), '../fixtures/simple_yaml/model.yml'))
+        YAML.load_file(File.join(SimpleFactory.definitions_dir, 'simple_yaml.yml'))
       end
 
       it 'creates an object with params in YAML file' do
@@ -100,7 +100,7 @@ describe SimpleFactory::Factory do
       subject { UtilityLabelsFactory }
 
       let(:source) do
-        YAML.load_file(File.join(File.dirname(__FILE__), '../fixtures/utility_labels/model.yml'))
+        YAML.load_file(File.join(SimpleFactory.definitions_dir, 'utility_labels.yml'))
       end
 
       describe '.create' do
@@ -117,7 +117,7 @@ describe SimpleFactory::Factory do
       subject { ToplevelSampleFactory }
 
       let(:source) do
-        YAML.load_file(File.join(File.dirname(__FILE__), '../fixtures/toplevel_sample/model.yml'))
+        YAML.load_file(File.join(SimpleFactory.definitions_dir, 'toplevel_sample.yml'))
       end
 
       describe '.create' do

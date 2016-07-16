@@ -16,7 +16,7 @@ module SimpleFactory
       private
         def define(path = nil, &block)
           if path
-            yaml = YAML.load_file(path)
+            yaml = YAML.load_file(File.expand_path(path, SimpleFactory.definitions_dir))
             hash_def = HashDefinitions.new(yaml)
             @definition_samples = hash_def.samples
           else
