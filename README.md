@@ -1,5 +1,8 @@
 # SimpleFactory
 
+[![Gem Version](https://badge.fury.io/rb/simple_factory.svg)](https://badge.fury.io/rb/simple_factory)
+[![Build Status](https://travis-ci.org/notozeki/simple_factory.svg?branch=master)](https://travis-ci.org/notozeki/simple_factory)
+
 A simple test data generator.
 
 ## Installation
