@@ -1,8 +1,6 @@
 # SimpleFactory
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/simple_factory`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A simple test data generator.
 
 ## Installation
 
@@ -22,20 +20,79 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Define factory
 
-## Development
+```ruby
+# Assume that Item model was defined like this:
+Item = Struct.new(:name, :price)
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+class ItemFactory < SimpleFactory::Factory
+  define do
+    # Define default params here.
+    name 'Milk'
+    price 100
+  end
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  def create(params)
+    # Code to create an object here.
+    Item.new(params[:name], params[:price])
+  end
+end
+```
 
-## Contributing
+### Use factory
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/simple_factory.
+```ruby
+# Simple usage
+ItemFactory.create # => #<struct Item name="Milk", price=100>
 
+# Use with overriding params
+ItemFactory.create(name: 'Cookie', price: 298) # => #<struct Item name="Cookie", price=298>
+```
+
+### Define Factory with YAML
+
+`model.yml`:
+
+```yaml
+_sample:
+  - name: Milk
+    price: 100
+  - name: Cookie
+    price: 298
+```
+
+Define a factory with YAML definitions:
+
+```ruby
+class ItemFactory < SimpleFactory::Factory
+  define '/path/to/model.yml'
+  # or, if you set `SimpleFactory.definitions_dir = '/path/to'`, simply:
+  #   define 'model.yml'
+
+  def create(params)
+    Item.new(params[:name], params[:price])
+  end
+end
+```
+
+Use the factory:
+
+```ruby
+ItemFactory.create # returns Milk or Cookie randomly.
+```
+
+Other options:
+
+```yaml
+name: # name will be "Taro" or "Hanako" randomly.
+  _sample:
+    - Taro
+    - Hanako
+email: # email will be "user1@example.com", "user2@example.com", ... in series.
+  _sequence: 'user%{i}@example.com'
+```
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
+MIT
